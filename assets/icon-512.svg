@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#c46b2a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#fff8f0"/>
+      <stop offset="100%" stop-color="#ffe0b2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <rect width="512" height="512" rx="110" fill="url(#bg)"/>
+
+  <!-- Shadow under cup -->
+  <ellipse cx="256" cy="370" rx="95" ry="18" fill="rgba(0,0,0,0.18)"/>
+
+  <!-- Cup body -->
+  <path d="M185 220 L195 355 Q196 370 213 372 L299 372 Q316 370 317 355 L327 220 Z"
+        fill="url(#cup)" stroke="#d4813a" stroke-width="5"/>
+
+  <!-- Cup rim -->
+  <rect x="178" y="208" width="156" height="22" rx="11" fill="#fff" stroke="#d4813a" stroke-width="4"/>
+
+  <!-- Steam lines -->
+  <path d="M220 185 Q228 160 220 140" fill="none" stroke="white" stroke-width="7"
+        stroke-linecap="round" opacity="0.75"/>
+  <path d="M256 178 Q264 150 256 128" fill="none" stroke="white" stroke-width="7"
+        stroke-linecap="round" opacity="0.75"/>
+  <path d="M292 185 Q300 160 292 140" fill="none" stroke="white" stroke-width="7"
+        stroke-linecap="round" opacity="0.75"/>
+
+  <!-- Coffee surface inside cup -->
+  <ellipse cx="256" cy="232" rx="60" ry="10" fill="#a0522d" opacity="0.6"/>
+
+  <!-- App name -->
+  <text x="256" y="430" font-family="Arial Black, Arial" font-weight="900"
+        font-size="52" fill="white" text-anchor="middle"
+        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))">SUNSET</text>
+  <text x="256" y="480" font-family="Arial Black, Arial" font-weight="900"
+        font-size="40" fill="rgba(255,255,255,0.88)" text-anchor="middle">CAFE</text>
+</svg>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#c46b2a"/>
+      <stop offset="60%"  stop-color="#e07b35"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="500" fill="url(#bg2)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="900" cy="80"  r="180" fill="rgba(255,255,255,0.07)"/>
+  <circle cx="950" cy="420" r="130" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="60"  cy="400" r="160" fill="rgba(0,0,0,0.06)"/>
+
+  <!-- Left: big cup icon -->
+  <g transform="translate(100,80) scale(1.1)">
+    <ellipse cx="140" cy="305" rx="80" ry="14" fill="rgba(0,0,0,0.15)"/>
+    <path d="M80 170 L90 295 Q91 308 104 309 L176 309 Q189 308 190 295 L200 170 Z"
+          fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+    <rect x="74" y="160" width="132" height="18" rx="9"
+          fill="white" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <path d="M105 148 Q112 128 105 110" fill="none" stroke="rgba(255,255,255,0.7)"
+          stroke-width="6" stroke-linecap="round"/>
+    <path d="M140 142 Q147 120 140 100" fill="none" stroke="rgba(255,255,255,0.7)"
+          stroke-width="6" stroke-linecap="round"/>
+    <path d="M175 148 Q182 128 175 110" fill="none" stroke="rgba(255,255,255,0.7)"
+          stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Center: App name + tagline -->
+  <text x="512" y="190" font-family="Arial Black, Arial" font-weight="900"
+        font-size="88" fill="white" text-anchor="middle"
+        filter="drop-shadow(0 4px 12px rgba(0,0,0,0.3))">Sunset Cafe</text>
+  <text x="512" y="255" font-family="Arial, sans-serif" font-weight="400"
+        font-size="32" fill="rgba(255,255,255,0.9)" text-anchor="middle">
+    Scan. Order. Enjoy.
+  </text>
+
+  <!-- Feature badges -->
+  <g>
+    <!-- Badge 1 -->
+    <rect x="290" y="295" width="200" height="54" rx="27"
+          fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <text x="390" y="328" font-family="Arial" font-size="20" font-weight="700"
+          fill="white" text-anchor="middle">📱 QR Ordering</text>
+
+    <!-- Badge 2 -->
+    <rect x="412" y="295" width="200" height="54" rx="27"
+          fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <text x="512" y="328" font-family="Arial" font-size="20" font-weight="700"
+          fill="white" text-anchor="middle">🍛 Live Menu</text>
+
+    <!-- Badge 3 -->
+    <rect x="534" y="295" width="200" height="54" rx="27"
+          fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <text x="634" y="328" font-family="Arial" font-size="20" font-weight="700"
+          fill="white" text-anchor="middle">🔔 Fast Service</text>
+  </g>
+
+  <!-- Bottom tagline -->
+  <text x="512" y="440" font-family="Arial" font-size="22"
+        fill="rgba(255,255,255,0.7)" text-anchor="middle">
+    The smart way to dine in — for customers, staff, and admins
+  </text>
+</svg>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Store Asset Preview</title>
+  <style>
+    body { background:#333; font-family:Arial; color:#fff; padding:40px; }
+    h2 { margin:24px 0 12px; color:#f59e0b; }
+    .box { display:inline-block; background:#555; padding:16px; border-radius:12px; margin:8px; }
+    .round img { border-radius:22%; }
+  </style>
+</head>
+<body>
+  <h1>Sunset Cafe — Store Asset Preview</h1>
+
+  <h2>App Icon 512×512</h2>
+  <div class="box round">
+    <img src="icon-512.svg" width="200" height="200" alt="App icon"/>
+  </div>
+  <div class="box round">
+    <img src="icon-512.svg" width="108" height="108" alt="App icon small"/>
+  </div>
+
+  <h2>Feature Graphic 1024×500</h2>
+  <div class="box">
+    <img src="feature-1024x500.svg" width="512" height="250" alt="Feature graphic"/>
+  </div>
+
+  <p style="margin-top:32px; color:#aaa; font-size:14px;">
+    To export as PNG for Play Console:<br/>
+    <code>rsvg-convert -w 512 -h 512 icon-512.svg -o icon-512.png</code><br/>
+    <code>rsvg-convert -w 1024 -h 500 feature-1024x500.svg -o feature-1024x500.png</code><br/>
+    Or open each SVG in Chrome → right-click → Save Image As PNG.
+  </p>
+</body>
+</html>

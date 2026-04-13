@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafe Table Order</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Sunset Cafe</h1>
+      <p class="muted">QR-based table ordering demo</p>
+    </div>
+    <div class="top-right">
+      <div class="top-links">
+        <a href="../index.html">Home</a>
+        <a href="../privacy-policy.html">Privacy</a>
+      </div>
+      <button id="loginToggleBtn" type="button" class="login-trigger primary" aria-label="Login with phone OTP">Login</button>
+      <button id="profileToggleBtn" type="button" class="profile-trigger" aria-label="Open profile settings">
+        <span id="profileTriggerAvatar" class="profile-avatar">U</span>
+        <span>Profile</span>
+      </button>
+    </div>
+  </header>
+  <div id="connectionBanner" class="connection-banner hidden" role="status" aria-live="polite">
+    <span id="connectionBannerText"></span>
+    <div class="connection-actions">
+      <button id="connectionRetryBtn" type="button" class="connection-btn hidden">Retry</button>
+      <button id="connectionDismissBtn" type="button" class="connection-chip" aria-label="Dismiss status">Dismiss</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero card">
+      <div>
+        <span class="pill">Table Service</span>
+        <h2>Order from your table</h2>
+        <p>Customers scan the QR code, browse the menu, place an order, and track status in real time.</p>
+      </div>
+      <div class="table-box">
+        <label for="tableSelect">Select Table</label>
+        <select id="tableSelect"></select>
+        <button id="loadTableBtn" class="primary">Start Ordering</button>
+      </div>
+    </section>
+
+    <section id="orderingSection" class="hidden">
+      <div class="info-strip card">
+        <div>
+          <strong id="activeTableText">Table -</strong>
+          <p class="muted">Volleyball court ordering can be added later as a separate location.</p>
+        </div>
+        <div class="actions-row">
+          <button id="requestWaiterBtn">Call Waiter</button>
+          <button id="requestBillBtn">Request Bill</button>
+          <button id="viewOrdersBtn">My Orders</button>
+        </div>
+      </div>
+
+      <section class="layout">
+        <div>
+          <div class="search-wrap card">
+            <label for="searchInput" class="sr-only">Search menu</label>
+            <input type="search" id="searchInput" aria-label="Search menu" placeholder="Search coffee, snacks, juice..." />
+            <div id="categoryTabs" class="tabs"></div>
+          </div>
+          <div id="menuGrid" class="menu-grid"></div>
+        </div>
+
+        <aside class="cart card">
+          <h3>Your Cart</h3>
+          <div id="cartItems" class="cart-items"></div>
+          <div class="bill-summary">
+            <div><span>Subtotal</span><strong id="subtotal">Rs 0.00</strong></div>
+            <div><span>Tax (5%)</span><strong id="tax">Rs 0.00</strong></div>
+            <div class="grand"><span>Total</span><strong id="total">Rs 0.00</strong></div>
+          </div>
+          <label for="orderNote" class="sr-only">Order notes</label>
+          <textarea id="orderNote" aria-label="Order notes" rows="3" placeholder="Add notes like less sugar, no ice, extra spicy..."></textarea>
+          <div id="customerAuthStatus" class="auth-status muted small">Phone verification is required before placing an order.</div>
+          <button id="placeOrderBtn" class="primary full">Place Order</button>
+          <p class="muted small">Cigarettes are handled as a staff-approval request and cannot be directly paid through this demo.</p>
+        </aside>
+      </section>
+    </section>
+
+    <section id="ordersModal" class="modal hidden">
+      <div class="modal-card card">
+        <div class="modal-head">
+          <h3>My Orders</h3>
+          <button id="closeOrdersModal">Close</button>
+        </div>
+        <div id="ordersList"></div>
+      </div>
+    </section>
+
+    <section id="otpModal" class="modal hidden">
+      <div class="modal-card card auth-modal-card">
+        <div class="modal-head">
+          <div>
+            <h3>Verify your phone</h3>
+            <p class="muted small">Enter your mobile number and OTP before placing the order.</p>
+          </div>
+          <button id="closeOtpModal">Close</button>
+        </div>
+
+        <div class="form-grid auth-form-grid">
+          <div>
+            <label for="customerPhoneInput">Phone Number</label>
+            <input id="customerPhoneInput" type="tel" inputmode="tel" autocomplete="tel" placeholder="Enter phone number" />
+          </div>
+
+          <button id="sendOtpBtn" class="primary">Send OTP</button>
+
+          <div id="otpDemoMessage" class="note hidden"></div>
+
+          <div id="otpVerificationSection" class="hidden">
+            <div>
+              <label for="otpInput">OTP</label>
+              <input id="otpInput" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Enter 6-digit OTP" />
+            </div>
+
+            <div class="actions-row">
+              <button id="verifyOtpBtn" class="primary">Verify &amp; Place Order</button>
+              <button id="resendOtpBtn">Resend OTP</button>
+            </div>
+
+            <p id="otpMetaText" class="muted small"></p>
+          </div>
+
+          <p id="otpErrorText" class="error-text hidden"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="profileDrawer" class="profile-drawer hidden" aria-label="User profile settings">
+      <div id="profileDrawerBackdrop" class="profile-backdrop"></div>
+      <aside class="profile-panel card">
+        <div class="modal-head profile-head">
+          <div class="profile-identity">
+            <span id="profilePreviewAvatar" class="profile-avatar large">U</span>
+            <div>
+              <h3 id="profileTitle">Your Profile</h3>
+              <p class="muted small">Manage account preferences and display details.</p>
+            </div>
+          </div>
+          <button id="closeProfileDrawerBtn" type="button">Close</button>
+        </div>
+
+        <form id="profileForm" class="form-grid profile-form">
+          <div>
+            <label for="profileDisplayNameInput">Display Name</label>
+            <input id="profileDisplayNameInput" type="text" placeholder="Enter your name" />
+          </div>
+
+          <div>
+            <label for="profilePhoneInput">Phone</label>
+            <input id="profilePhoneInput" type="tel" inputmode="tel" placeholder="Enter phone number" />
+          </div>
+
+          <div>
+            <label for="profileEmailInput">Email</label>
+            <input id="profileEmailInput" type="email" placeholder="name@example.com" />
+          </div>
+
+          <div>
+            <label for="profileAvatarUrlInput">Image URL</label>
+            <input id="profileAvatarUrlInput" type="url" placeholder="https://example.com/avatar.png" />
+          </div>
+
+          <label class="setting-row" for="profileNotificationsInput">
+            <input id="profileNotificationsInput" type="checkbox" />
+            <span>Order status notifications</span>
+          </label>
+
+          <label class="setting-row" for="profileDarkModeInput">
+            <input id="profileDarkModeInput" type="checkbox" />
+            <span>Dark mode</span>
+          </label>
+
+          <div class="actions-row">
+            <button id="saveProfileBtn" type="submit" class="primary">Save Settings</button>
+            <button id="resetProfileBtn" type="button">Reset</button>
+          </div>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
